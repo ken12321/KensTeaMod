@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ===== Trait ===== -->
+  <TraitDef>
+    <defName>KM_Zen</defName>
+    <commonality>0.5</commonality>
+    <degreeDatas>
+      <li>
+        <label>zen</label>
+        <description>{PAWN_nameDef} finds peace in a quiet cup of tea, enjoying every cup more than most. {PAWN_pronoun} gets restless without drinking tea for long.</description>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <!-- ===== Drinking tea: given by KM_TeaBase's specialThoughtDirect ===== -->
+  <ThoughtDef>
+    <defName>KM_ZenDrankTea</defName>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <requiredTraits>
+      <li>KM_Zen</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>savoured my tea</label>
+        <description>A relaxing cup of tea and a moment of stillness.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===== Going without: active while the pawn has no KM_RecentTea ===== -->
+  <ThoughtDef>
+    <defName>KM_ZenMissingTea</defName>
+    <workerClass>KensMod.ThoughtWorker_ZenMissingTea</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <requiredTraits>
+      <li>KM_Zen</li>
+    </requiredTraits>
+    <stages>
+      <li>
+        <label>missing my tea</label>
+        <description>It's been days since I had a proper cup of tea. Something feels wrong.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Hidden timer: every tea sets it to full, and it fades out after 2 days. -->
+  <HediffDef>
+    <defName>KM_RecentTea</defName>
+    <label>recent tea</label>
+    <description>Had tea recently.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <everVisible>false</everVisible>
+    <isBad>false</isBad>
+    <maxSeverity>1.0</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-0.5</severityPerDay>
+      </li>
+    </comps>
+  </HediffDef>
+
+</Defs>
