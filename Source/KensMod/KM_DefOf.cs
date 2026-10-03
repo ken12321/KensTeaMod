@@ -14,6 +14,8 @@ namespace KensMod
         public static ThoughtDef KM_SharedTea;
         public static ThoughtDef KM_SharedTeaSocial;
 
+        public static HediffDef KM_RecentTea;
+
         static KM_DefOf()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(KM_DefOf));
