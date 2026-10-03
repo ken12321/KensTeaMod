@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <KM_Drying>Drying: {0}</KM_Drying>
+  <KM_DryingPausedRain>Drying paused (rain): {0}</KM_DryingPausedRain>
+  <KM_NotDrying>Not drying ({0}). Place on a drying rack.</KM_NotDrying>
+
+  <KM_TeapotNoTea>No tea</KM_TeapotNoTea>
+  <KM_TeapotSelectDesc>Choose which tea this teapot holds (up to {0} cups). Changing the tea pours out what's inside.</KM_TeapotSelectDesc>
+  <KM_TeapotNoTeaInspect>No tea selected.</KM_TeapotNoTeaInspect>
+  <KM_TeapotContents>Holding {0} / {1} {2}</KM_TeapotContents>
+  <KM_NoTeaToFill>No {0} available</KM_NoTeaToFill>
+
+</LanguageData>

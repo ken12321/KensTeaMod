@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ResearchProjectDef>
+    <defName>KM_TeaCultivation</defName>
+    <label>tea cultivation</label>
+    <description>Grow tea herbs, dry their leaves on drying racks, and brew them into soothing teas at a campfire or stove.</description>
+    <baseCost>300</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <researchViewX>0.00</researchViewX>
+    <researchViewY>5.60</researchViewY>
+  </ResearchProjectDef>
+
+</Defs>

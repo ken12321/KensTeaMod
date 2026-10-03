@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ===== Plant ===== -->
+  <ThingDef ParentName="KM_TeaPlantBase">
+    <defName>KM_Plant_Ginger</defName>
+    <label>ginger plant</label>
+    <description>A leafy plant grown for its pungent root. The root is dug up, dried, and brewed into a spicy tea that warms the body from the inside.</description>
+    <graphicData>
+      <texPath>Things/Plant/PotatoPlant</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <plant>
+      <immatureGraphicPath>Things/Plant/PotatoPlant_Immature</immatureGraphicPath>
+      <growDays>8</growDays>
+      <harvestedThingDef>KM_GingerRootFresh</harvestedThingDef>
+      <harvestYield>6</harvestYield>
+      <sowMinSkill>4</sowMinSkill>
+    </plant>
+  </ThingDef>
+
+  <!-- ===== Root ===== -->
+  <ThingDef ParentName="KM_FreshTeaLeavesBase">
+    <defName>KM_GingerRootFresh</defName>
+    <label>fresh ginger root</label>
+    <description>Freshly dug ginger root. It must be dried on a drying rack before it can be brewed. Rain pauses drying outdoors. Left undried, it rots in about two weeks.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/Potatoes</texPath>
+      <color>(235,200,140)</color>
+    </graphicData>
+    <comps>
+      <li Class="KensMod.CompProperties_Dryable">
+        <driedThingDef>KM_GingerRootDried</driedThingDef>
+        <daysToDry>2</daysToDry>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="KM_DriedTeaLeavesBase">
+    <defName>KM_GingerRootDried</defName>
+    <label>dried ginger</label>
+    <description>Sliced and dried ginger root, ready to be brewed into tea. Keeps indefinitely.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/Potatoes</texPath>
+      <color>(200,160,90)</color>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ===== Tea ===== -->
+  <ThingDef ParentName="KM_TeaBase">
+    <defName>KM_GingerTea</defName>
+    <label>ginger tea</label>
+    <description>A spicy, warming tea. For several hours after drinking it, the body shrugs off the cold. Popular with anyone working outdoors in winter. Not addictive.</description>
+    <descriptionHyperlinks>
+      <HediffDef>KM_GingerWarmth</HediffDef>
+    </descriptionHyperlinks>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>KM_GingerWarmth</hediffDef>
+          <severity>1.0</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <costList>
+      <KM_GingerRootDried>4</KM_GingerRootDried>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <addictiveness>0</addictiveness>
+        <listOrder>113</listOrder>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ===== Effect: ~8 hours ===== -->
+  <HediffDef>
+    <defName>KM_GingerWarmth</defName>
+    <label>warmed by ginger</label>
+    <labelNoun>a ginger warmth</labelNoun>
+    <description>Ginger tea in the bloodstream. The pawn tolerates cold much better.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(1.0,0.75,0.4)</defaultLabelColor>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-3.0</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <statOffsets>
+          <ComfyTemperatureMin>-8</ComfyTemperatureMin>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>KM_GingerWarmth</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>KM_GingerWarmth</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>warmed by ginger</label>
+        <description>That ginger tea warmed me right through.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

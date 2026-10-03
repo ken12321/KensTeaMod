@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>KM_Teapot</defName>
+    <label>teapot</label>
+    <description>A large communal teapot. Choose a tea and haulers keep it filled with up to 50 cups. Colonists pour themselves a cup during recreation, and those who drink together feel a little closer. Tea in the pot doesn't spoil.</description>
+    <thingClass>KensMod.Building_Teapot</thingClass>
+    <graphicData>
+      <!-- Placeholder art. -->
+      <texPath>Things/Building/Production/FermentingBarrel</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(0.75,0.75)</drawSize>
+      <shadowData>
+        <volume>(0.5, 0.3, 0.3)</volume>
+      </shadowData>
+    </graphicData>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <fillPercent>0.3</fillPercent>
+    <pathCost>30</pathCost>
+    <rotatable>false</rotatable>
+    <canOverlapZones>false</canOverlapZones>
+    <socialPropernessMatters>true</socialPropernessMatters>
+    <tickerType>Never</tickerType>
+    <thingCategories>
+      <li>BuildingsJoy</li>
+    </thingCategories>
+    <stuffCategories>
+      <li>Stony</li>
+      <li>Metallic</li>
+    </stuffCategories>
+    <costStuffCount>20</costStuffCount>
+    <statBases>
+      <WorkToBuild>600</WorkToBuild>
+      <Mass>3</Mass>
+      <MaxHitPoints>80</MaxHitPoints>
+      <Flammability>0.5</Flammability>
+      <Beauty>3</Beauty>
+    </statBases>
+    <designationCategory>Joy</designationCategory>
+    <researchPrerequisites>
+      <li>KM_TeaCultivation</li>
+    </researchPrerequisites>
+    <building>
+      <joyKind>Gluttonous</joyKind>
+    </building>
+    <modExtensions>
+      <li Class="KensMod.TeapotExtension">
+        <capacity>50</capacity>
+        <refillWhenMissing>10</refillWhenMissing>
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+</Defs>

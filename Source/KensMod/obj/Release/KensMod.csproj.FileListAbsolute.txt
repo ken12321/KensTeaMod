@@ -1,0 +1,7 @@
+C:\Users\ken\Desktop\kenmod\Assemblies\KensMod.dll
+C:\Users\ken\Desktop\kenmod\Source\KensMod\obj\Release\KensMod.csproj.AssemblyReference.cache
+C:\Users\ken\Desktop\kenmod\Source\KensMod\obj\Release\KensMod.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ken\Desktop\kenmod\Source\KensMod\obj\Release\KensMod.AssemblyInfoInputs.cache
+C:\Users\ken\Desktop\kenmod\Source\KensMod\obj\Release\KensMod.AssemblyInfo.cs
+C:\Users\ken\Desktop\kenmod\Source\KensMod\obj\Release\KensMod.csproj.CoreCompileInputs.cache
+C:\Users\ken\Desktop\kenmod\Source\KensMod\obj\Release\KensMod.dll

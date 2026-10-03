@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingCategoryDef>
+    <defName>KM_FreshTeaLeaves</defName>
+    <label>fresh tea leaves</label>
+    <parent>PlantMatter</parent>
+  </ThingCategoryDef>
+
+  <ThingCategoryDef>
+    <defName>KM_DriedTeaLeaves</defName>
+    <label>dried tea leaves</label>
+    <parent>PlantMatter</parent>
+  </ThingCategoryDef>
+
+  <!-- Brewed teas. The teapot offers every def in this category. -->
+  <ThingCategoryDef>
+    <defName>KM_Teas</defName>
+    <label>teas</label>
+    <parent>Drugs</parent>
+  </ThingCategoryDef>
+
+</Defs>

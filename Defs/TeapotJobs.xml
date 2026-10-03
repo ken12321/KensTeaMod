@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ===== Drinking from the teapot (recreation) ===== -->
+  <JobDef>
+    <defName>KM_DrinkFromTeapot</defName>
+    <driverClass>KensMod.JobDriver_DrinkFromTeapot</driverClass>
+    <reportString>having tea at TargetA.</reportString>
+    <joyKind>Gluttonous</joyKind>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+  <JoyGiverDef>
+    <defName>KM_DrinkFromTeapot</defName>
+    <giverClass>KensMod.JoyGiver_Teapot</giverClass>
+    <baseChance>2</baseChance>
+    <jobDef>KM_DrinkFromTeapot</jobDef>
+    <joyKind>Gluttonous</joyKind>
+    <thingDefs>
+      <li>KM_Teapot</li>
+    </thingDefs>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <!-- ===== Filling the teapot (hauling) ===== -->
+  <JobDef>
+    <defName>KM_FillTeapot</defName>
+    <driverClass>KensMod.JobDriver_FillTeapot</driverClass>
+    <reportString>filling TargetA.</reportString>
+  </JobDef>
+
+  <WorkGiverDef>
+    <defName>KM_FillTeapot</defName>
+    <label>fill teapots</label>
+    <giverClass>KensMod.WorkGiver_FillTeapot</giverClass>
+    <workType>Hauling</workType>
+    <verb>fill</verb>
+    <gerund>filling</gerund>
+    <priorityInType>135</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+
+  <!-- ===== Drinking together ===== -->
+  <ThoughtDef>
+    <defName>KM_SharedTea</defName>
+    <durationDays>0.25</durationDays>
+    <stackLimit>1</stackLimit>
+    <developmentalStageFilter>Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>shared a pot of tea</label>
+        <description>I had a nice cup of tea with company.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>KM_SharedTeaSocial</defName>
+    <thoughtClass>Thought_MemorySocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>10</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>shared tea</label>
+        <baseOpinionOffset>3</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <ThingDef ParentName="ShelfBase">
+    <defName>KM_DryingRack</defName>
+    <label>drying rack</label>
+    <description>An airy slatted rack for drying fresh tea leaves. Leaves dry here in 2 days. Drying pauses while it rains if the rack is not under a roof.</description>
+    <thingClass>Building_Storage</thingClass>
+    <graphicData>
+      <texPath>Things/Building/Furniture/Shelf</texPath>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <drawSize>(3,2)</drawSize>
+    </graphicData>
+    <size>(2,1)</size>
+    <costStuffCount>20</costStuffCount>
+    <stuffCategories Inherit="False">
+      <li>Woody</li>
+      <li>Metallic</li>
+    </stuffCategories>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <Mass>6</Mass>
+      <WorkToBuild>400</WorkToBuild>
+    </statBases>
+    <designationCategory>Production</designationCategory>
+    <researchPrerequisites Inherit="False">
+      <li>KM_TeaCultivation</li>
+    </researchPrerequisites>
+    <building>
+      <storageGroupTag>KM_DryingRack</storageGroupTag>
+      <maxItemsInCell>3</maxItemsInCell>
+      <fixedStorageSettings>
+        <filter>
+          <categories>
+            <li>KM_FreshTeaLeaves</li>
+          </categories>
+        </filter>
+      </fixedStorageSettings>
+      <defaultStorageSettings>
+        <priority>Important</priority>
+        <filter>
+          <categories>
+            <li>KM_FreshTeaLeaves</li>
+          </categories>
+        </filter>
+      </defaultStorageSettings>
+    </building>
+    <modExtensions>
+      <li Class="KensMod.DryingSurfaceExtension">
+        <speedFactor>1.0</speedFactor>
+      </li>
+    </modExtensions>
+  </ThingDef>
+
+</Defs>

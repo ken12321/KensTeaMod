@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ===== Plant ===== -->
+  <ThingDef ParentName="KM_TeaPlantBase">
+    <defName>KM_Plant_Chamomile</defName>
+    <label>chamomile plant</label>
+    <description>A small, daisy-like herb with a gentle apple scent. Its flowers and leaves can be dried and brewed into a calming tea.</description>
+    <graphicData>
+      <texPath>Things/Plant/Healroot</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <plant>
+      <immatureGraphicPath>Things/Plant/Healroot_Immature</immatureGraphicPath>
+      <growDays>6</growDays>
+      <harvestedThingDef>KM_ChamomileLeavesFresh</harvestedThingDef>
+      <harvestYield>8</harvestYield>
+      <sowMinSkill>3</sowMinSkill>
+    </plant>
+  </ThingDef>
+
+  <!-- ===== Leaves ===== -->
+  <ThingDef ParentName="KM_FreshTeaLeavesBase">
+    <defName>KM_ChamomileLeavesFresh</defName>
+    <label>fresh chamomile</label>
+    <description>Freshly cut chamomile flowers and leaves. They must be dried on a drying rack before they can be brewed. Rain pauses drying outdoors. Left undried, they rot in about two weeks.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/PsychoidLeaves</texPath>
+    </graphicData>
+    <comps>
+      <li Class="KensMod.CompProperties_Dryable">
+        <driedThingDef>KM_ChamomileLeavesDried</driedThingDef>
+        <daysToDry>2</daysToDry>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="KM_DriedTeaLeavesBase">
+    <defName>KM_ChamomileLeavesDried</defName>
+    <label>dried chamomile</label>
+    <description>Dried chamomile, ready to be brewed into tea. Keeps indefinitely.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/PsychoidLeaves</texPath>
+      <color>(200,180,120)</color>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ===== Tea ===== -->
+  <ThingDef ParentName="KM_TeaBase">
+    <defName>KM_ChamomileTea</defName>
+    <label>chamomile tea</label>
+    <description>A warm, mellow herbal tea. Drinking it calms the mind for a few hours, lifting mood and making mental breaks less likely. Not addictive.</description>
+    <descriptionHyperlinks>
+      <HediffDef>KM_ChamomileCalm</HediffDef>
+    </descriptionHyperlinks>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>KM_ChamomileCalm</hediffDef>
+          <severity>1.0</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <costList>
+      <KM_ChamomileLeavesDried>4</KM_ChamomileLeavesDried>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <addictiveness>0</addictiveness>
+        <listOrder>111</listOrder>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ===== Effect: ~6 hours ===== -->
+  <HediffDef>
+    <defName>KM_ChamomileCalm</defName>
+    <label>calmed by chamomile</label>
+    <labelNoun>a chamomile calm</labelNoun>
+    <description>Chamomile tea in the bloodstream. The pawn feels relaxed and is less likely to suffer a mental break.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9,0.85,0.5)</defaultLabelColor>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-4.0</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <statOffsets>
+          <MentalBreakThreshold>-0.04</MentalBreakThreshold>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>KM_ChamomileCalm</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>KM_ChamomileCalm</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>calmed by chamomile</label>
+        <description>That cup of chamomile tea really settled my nerves.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

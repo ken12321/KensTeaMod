@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Ken's Mod</name>
+  <author>Ken</author>
+  <packageId>kenmod.KensMod</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Adds herbal teas to RimWorld. Grow tea herbs, dry the harvested leaves on a drying rack (2 days), then brew them at a campfire or stove.\n\nFresh leaves rot in about two weeks; dried leaves keep indefinitely. Rain pauses drying outdoors.\n\nTeas:\n - Chamomile tea: calms pawns for a few hours (+6 mood, lower mental break threshold).\n - Peppermint tea: refreshing (+3 mood) and cuts food poisoning short.\n - Ginger tea: warms the body, so pawns tolerate 8°C more cold for about 8 hours.\n\nBuild a teapot in your rec or dining room, pick a tea, and haulers keep it filled with up to 50 cups. Colonists drink from it for recreation and bond over shared tea.</description>
+</ModMetaData>

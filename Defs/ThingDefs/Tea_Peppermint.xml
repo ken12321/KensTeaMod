@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ===== Plant ===== -->
+  <ThingDef ParentName="KM_TeaPlantBase">
+    <defName>KM_Plant_Peppermint</defName>
+    <label>peppermint plant</label>
+    <description>A hardy, fast-spreading herb with sharply aromatic leaves. Dried and brewed, it makes a refreshing tea that settles the stomach.</description>
+    <graphicData>
+      <texPath>Things/Plant/SmokeleafPlant</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+      <color>(170,230,170)</color>
+    </graphicData>
+    <plant>
+      <growDays>5</growDays>
+      <harvestedThingDef>KM_PeppermintLeavesFresh</harvestedThingDef>
+      <harvestYield>8</harvestYield>
+      <sowMinSkill>2</sowMinSkill>
+    </plant>
+  </ThingDef>
+
+  <!-- ===== Leaves ===== -->
+  <ThingDef ParentName="KM_FreshTeaLeavesBase">
+    <defName>KM_PeppermintLeavesFresh</defName>
+    <label>fresh peppermint</label>
+    <description>Freshly cut peppermint leaves. They must be dried on a drying rack before they can be brewed. Rain pauses drying outdoors. Left undried, they rot in about two weeks.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/SmokeleafLeaves</texPath>
+      <color>(160,235,160)</color>
+    </graphicData>
+    <comps>
+      <li Class="KensMod.CompProperties_Dryable">
+        <driedThingDef>KM_PeppermintLeavesDried</driedThingDef>
+        <daysToDry>2</daysToDry>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="KM_DriedTeaLeavesBase">
+    <defName>KM_PeppermintLeavesDried</defName>
+    <label>dried peppermint</label>
+    <description>Dried peppermint leaves, ready to be brewed into tea. Keeps indefinitely.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/SmokeleafLeaves</texPath>
+      <color>(150,180,120)</color>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ===== Tea ===== -->
+  <ThingDef ParentName="KM_TeaBase">
+    <defName>KM_PeppermintTea</defName>
+    <label>peppermint tea</label>
+    <description>A cool, sharp herbal tea. It settles the stomach, cutting food poisoning short, and leaves the drinker feeling refreshed for a few hours. Not addictive.</description>
+    <descriptionHyperlinks>
+      <HediffDef>KM_PeppermintRefreshed</HediffDef>
+      <HediffDef>FoodPoisoning</HediffDef>
+    </descriptionHyperlinks>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>KM_PeppermintRefreshed</hediffDef>
+          <severity>1.0</severity>
+        </li>
+        <!-- Food poisoning starts at 1.0 and falls by 1 per day, so -0.5 removes about 12 hours of it. -->
+        <li Class="KensMod.IngestionOutcomeDoer_OffsetHediffSeverity">
+          <hediffDef>FoodPoisoning</hediffDef>
+          <offset>-0.5</offset>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <costList>
+      <KM_PeppermintLeavesDried>4</KM_PeppermintLeavesDried>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <addictiveness>0</addictiveness>
+        <listOrder>112</listOrder>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ===== Effect: ~6 hours ===== -->
+  <HediffDef>
+    <defName>KM_PeppermintRefreshed</defName>
+    <label>refreshed by peppermint</label>
+    <labelNoun>a peppermint refreshment</labelNoun>
+    <description>Peppermint tea in the bloodstream. The pawn feels refreshed.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6,0.95,0.6)</defaultLabelColor>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-4.0</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li />
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>KM_PeppermintRefreshed</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>KM_PeppermintRefreshed</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>refreshed by peppermint</label>
+        <description>That peppermint tea was so refreshing.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- Shared parents for every tea. To add a tea, copy Tea_Chamomile.xml and change the specifics. -->
+
+  <ThingDef Name="KM_TeaPlantBase" ParentName="PlantBase" Abstract="True">
+    <statBases>
+      <MaxHitPoints>85</MaxHitPoints>
+      <Nutrition>0.2</Nutrition>
+    </statBases>
+    <selectable>true</selectable>
+    <pathCost>14</pathCost>
+    <ingestible />
+    <plant>
+      <dieIfLeafless>true</dieIfLeafless>
+      <harvestTag>Standard</harvestTag>
+      <sowTags>
+        <li>Ground</li>
+        <li>Hydroponic</li>
+      </sowTags>
+      <sowResearchPrerequisites>
+        <li>KM_TeaCultivation</li>
+      </sowResearchPrerequisites>
+      <topWindExposure>0.1</topWindExposure>
+      <visualSizeRange>0.4~0.9</visualSizeRange>
+      <wildOrder>2</wildOrder>
+      <fertilityMin>0.50</fertilityMin>
+      <fertilitySensitivity>0.5</fertilitySensitivity>
+    </plant>
+  </ThingDef>
+
+  <!-- Fresh leaves rot in ~14 days (temperature-scaled like food) unless dried. -->
+  <ThingDef Name="KM_FreshTeaLeavesBase" ParentName="RoughPlantBase" Abstract="True">
+    <possessionCount>10</possessionCount>
+    <statBases>
+      <MarketValue>1.2</MarketValue>
+    </statBases>
+    <thingCategories>
+      <li>KM_FreshTeaLeaves</li>
+    </thingCategories>
+    <ingestible>
+      <preferability>DesperateOnly</preferability>
+      <canAutoSelectAsFoodForCaravan>false</canAutoSelectAsFoodForCaravan>
+    </ingestible>
+    <comps>
+      <li Class="CompProperties_Rottable">
+        <daysToRotStart>14</daysToRotStart>
+        <rotDestroys>true</rotDestroys>
+      </li>
+      <!-- Each fresh leaf def adds its own KensMod.CompProperties_Dryable (list entries append, not merge). -->
+    </comps>
+  </ThingDef>
+
+  <!-- Dried leaves keep indefinitely. -->
+  <ThingDef Name="KM_DriedTeaLeavesBase" ParentName="ResourceBase" Abstract="True">
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <possessionCount>10</possessionCount>
+    <statBases>
+      <MaxHitPoints>60</MaxHitPoints>
+      <Flammability>1.3</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+      <Mass>0.02</Mass>
+      <MarketValue>1.8</MarketValue>
+    </statBases>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <thingCategories>
+      <li>KM_DriedTeaLeaves</li>
+    </thingCategories>
+  </ThingDef>
+
+  <!-- Brewed tea: a non-addictive social drug, made at cooking stations. -->
+  <ThingDef Name="KM_TeaBase" ParentName="MakeableDrugBase" Abstract="True">
+    <graphicData>
+      <texPath>Things/Item/Drug/Tea</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <drawSize>0.88</drawSize>
+    </graphicData>
+    <rotatable>false</rotatable>
+    <thingCategories Inherit="False">
+      <li>KM_Teas</li>
+    </thingCategories>
+    <statBases>
+      <WorkToMake>400</WorkToMake>
+      <MarketValue>8</MarketValue>
+      <Mass>0.05</Mass>
+      <DeteriorationRate>6</DeteriorationRate>
+    </statBases>
+    <techLevel>Neolithic</techLevel>
+    <ingestible>
+      <foodType>Fluid, Processed</foodType>
+      <joyKind>Gluttonous</joyKind>
+      <joy>0.20</joy>
+      <baseIngestTicks>210</baseIngestTicks>
+      <nurseable>true</nurseable>
+      <drugCategory>Social</drugCategory>
+      <ingestSound>Ingest_Drink</ingestSound>
+      <ingestHoldOffsetStanding>
+        <northDefault>
+          <offset>(0.18,0,0)</offset>
+        </northDefault>
+      </ingestHoldOffsetStanding>
+      <ingestHoldUsesTable>false</ingestHoldUsesTable>
+      <ingestCommandString>Drink {0}</ingestCommandString>
+      <ingestReportString>Drinking {0}.</ingestReportString>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisite>KM_TeaCultivation</researchPrerequisite>
+      <recipeUsers>
+        <li>Campfire</li>
+        <li>ElectricStove</li>
+        <li>FueledStove</li>
+      </recipeUsers>
+      <workSpeedStat>DrugCookingSpeed</workSpeedStat>
+      <workSkill>Cooking</workSkill>
+      <skillRequirements>
+        <Cooking>2</Cooking>
+      </skillRequirements>
+      <requiredGiverWorkType>Cooking</requiredGiverWorkType>
+      <displayPriority>1470</displayPriority>
+    </recipeMaker>
+  </ThingDef>
+
+</Defs>
