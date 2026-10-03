@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ken\\Desktop\\kenmod\\Source\\KensMod\\KensMod.csproj": {}
+    "C:\\Users\\ken\\Desktop\\Repos\\Ken's Tea Mod\\Source\\KensMod\\KensMod.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ken\\Desktop\\kenmod\\Source\\KensMod\\KensMod.csproj": {
+    "C:\\Users\\ken\\Desktop\\Repos\\Ken's Tea Mod\\Source\\KensMod\\KensMod.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ken\\Desktop\\kenmod\\Source\\KensMod\\KensMod.csproj",
+        "projectUniqueName": "C:\\Users\\ken\\Desktop\\Repos\\Ken's Tea Mod\\Source\\KensMod\\KensMod.csproj",
         "projectName": "KensMod",
-        "projectPath": "C:\\Users\\ken\\Desktop\\kenmod\\Source\\KensMod\\KensMod.csproj",
+        "projectPath": "C:\\Users\\ken\\Desktop\\Repos\\Ken's Tea Mod\\Source\\KensMod\\KensMod.csproj",
         "packagesPath": "C:\\Users\\ken\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ken\\Desktop\\kenmod\\Source\\KensMod\\obj\\",
+        "outputPath": "C:\\Users\\ken\\Desktop\\Repos\\Ken's Tea Mod\\Source\\KensMod\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ken\\AppData\\Roaming\\NuGet\\NuGet.Config"

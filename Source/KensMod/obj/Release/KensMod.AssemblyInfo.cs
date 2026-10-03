@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("KensMod")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f8661360d3f2eaa49f1a7cfb920220761cd0ddcd")]
 [assembly: System.Reflection.AssemblyProductAttribute("KensMod")]
 [assembly: System.Reflection.AssemblyTitleAttribute("KensMod")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

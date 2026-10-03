@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Zm9gu6NIfnY=",
+  "dgSpecHash": "QUqABljIYpI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\ken\\Desktop\\kenmod\\Source\\KensMod\\KensMod.csproj",
+  "projectFilePath": "C:\\Users\\ken\\Desktop\\Repos\\Ken's Tea Mod\\Source\\KensMod\\KensMod.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ken\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
     "C:\\Users\\ken\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net472\\1.0.3\\microsoft.netframework.referenceassemblies.net472.1.0.3.nupkg.sha512"
