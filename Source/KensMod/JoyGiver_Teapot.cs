@@ -37,26 +37,44 @@ namespace KensMod
 
         public static bool CanDrinkFrom(Pawn pawn, Thing t)
         {
-            if (!(t is Building_Teapot pot))
-            {
-                return false;
-            }
+            return t is Building_Teapot pot && !t.Fogged() && CannotDrinkReason(pawn, pot) == null
+                && !DrugPolicyForbidsJoy(pawn, pot.PeekCup.def);
+        }
+
+        // Why the pawn can't pour a cup right now, or null if they can. Drug policy is separate, since players may override it.
+        public static string CannotDrinkReason(Pawn pawn, Building_Teapot pot)
+        {
             Thing cup = pot.PeekCup;
-            if (cup == null || !pawn.WillEat(cup))
+            if (cup == null)
             {
-                return false;
+                return pot.TeaDef == null ? "KM_CannotDrinkNoTeaSelected".Translate() : "KM_CannotDrinkEmpty".Translate();
             }
-            if (t.IsForbidden(pawn) || t.Fogged() || t.IsBurning() || !t.IsSociallyProper(pawn) || !t.IsPoliticallyProper(pawn))
+            // Def overload on purpose: tea has no nutrition, so it's outside food policies, and the Thing overload
+            // treats that as "not allowed". Drug policy governs tea instead.
+            if (!pawn.WillEat(cup.def))
             {
-                return false;
+                return "KM_CannotDrinkWontDrink".Translate(cup.def.label);
             }
-            // Same drug policy rule as vanilla recreational drug use.
-            if (cup.def.IsDrug && pawn.drugs != null && !pawn.drugs.CurrentPolicy[cup.def].allowedForJoy
-                && pawn.story != null && pawn.story.traits.DegreeOfTrait(TraitDefOf.DrugDesire) <= 0 && !pawn.InMentalState)
+            if (pot.IsForbidden(pawn))
             {
-                return false;
+                return "KM_CannotDrinkForbidden".Translate();
             }
-            return true;
+            if (pot.IsBurning())
+            {
+                return "KM_CannotDrinkBurning".Translate();
+            }
+            if (!pot.IsSociallyProper(pawn) || !pot.IsPoliticallyProper(pawn))
+            {
+                return "KM_CannotDrinkImproper".Translate();
+            }
+            return null;
+        }
+
+        // Same drug policy rule as vanilla recreational drug use.
+        public static bool DrugPolicyForbidsJoy(Pawn pawn, ThingDef teaDef)
+        {
+            return teaDef.IsDrug && pawn.drugs != null && !pawn.drugs.CurrentPolicy[teaDef].allowedForJoy
+                && pawn.story != null && pawn.story.traits.DegreeOfTrait(TraitDefOf.DrugDesire) <= 0 && !pawn.InMentalState;
         }
     }
 }

@@ -11,4 +11,14 @@
   <KM_TeapotContents>Holding {0} / {1} {2}</KM_TeapotContents>
   <KM_NoTeaToFill>No {0} available</KM_NoTeaToFill>
 
+  <KM_DrinkFromTeapot>Drink {0} from teapot</KM_DrinkFromTeapot>
+  <KM_DrinkFromTeapotGeneric>Drink tea from teapot</KM_DrinkFromTeapotGeneric>
+  <KM_DrinkFromTeapotPolicyNote>(drug policy: not allowed for joy)</KM_DrinkFromTeapotPolicyNote>
+  <KM_CannotDrinkNoTeaSelected>No tea selected</KM_CannotDrinkNoTeaSelected>
+  <KM_CannotDrinkEmpty>Teapot is empty</KM_CannotDrinkEmpty>
+  <KM_CannotDrinkWontDrink>Won't drink {0}</KM_CannotDrinkWontDrink>
+  <KM_CannotDrinkForbidden>Teapot is forbidden</KM_CannotDrinkForbidden>
+  <KM_CannotDrinkBurning>Teapot is burning</KM_CannotDrinkBurning>
+  <KM_CannotDrinkImproper>Not appropriate here</KM_CannotDrinkImproper>
+
 </LanguageData>

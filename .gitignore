@@ -1,0 +1,15 @@
+# Build intermediates (contain absolute local paths, regenerated on every build)
+[Oo]bj/
+[Bb]in/
+
+# IDE files
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+
+# OS files
+Thumbs.db
+desktop.ini
+.DS_Store
