@@ -3,6 +3,7 @@ using System.Text;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace KensMod
 {
@@ -118,6 +119,39 @@ namespace KensMod
                 icon = teaDef != null ? teaDef.uiIcon : TexCommand.ClearPrioritizedWork,
                 action = OpenTeaMenu
             };
+        }
+
+        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
+        {
+            foreach (FloatMenuOption o in base.GetFloatMenuOptions(selPawn))
+            {
+                yield return o;
+            }
+            string label = teaDef == null
+                ? "KM_DrinkFromTeapotGeneric".Translate().ToString()
+                : "KM_DrinkFromTeapot".Translate(teaDef.label).ToString();
+            if (!selPawn.CanReach(this, PathEndMode.Touch, Danger.Deadly))
+            {
+                yield return new FloatMenuOption(label + ": " + "NoPath".Translate().CapitalizeFirst(), null);
+                yield break;
+            }
+            string reason = JoyGiver_Teapot.CannotDrinkReason(selPawn, this);
+            if (reason != null)
+            {
+                yield return new FloatMenuOption(label + ": " + reason, null);
+                yield break;
+            }
+            // Ordering past the drug policy is allowed, but flag it: it's why pawns won't drink here on their own.
+            if (JoyGiver_Teapot.DrugPolicyForbidsJoy(selPawn, teaDef))
+            {
+                label += " " + "KM_DrinkFromTeapotPolicyNote".Translate();
+            }
+            yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption(label, delegate
+            {
+                Job job = JobMaker.MakeJob(KM_DefOf.KM_DrinkFromTeapot, this);
+                job.playerForced = true;
+                selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            }), selPawn, this);
         }
 
         private void OpenTeaMenu()
