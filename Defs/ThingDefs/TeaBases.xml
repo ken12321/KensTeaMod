@@ -104,6 +104,15 @@
       <ingestHoldUsesTable>false</ingestHoldUsesTable>
       <ingestCommandString>Drink {0}</ingestCommandString>
       <ingestReportString>Drinking {0}.</ingestReportString>
+      <!-- Zen trait: mood bonus (filtered to Zen pawns by the ThoughtDef) and resetting the "missing tea" timer.
+           Each tea's own outcomeDoers are appended to this list. -->
+      <specialThoughtDirect>KM_ZenDrankTea</specialThoughtDirect>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>KM_RecentTea</hediffDef>
+          <severity>1.0</severity>
+        </li>
+      </outcomeDoers>
     </ingestible>
     <recipeMaker>
       <researchPrerequisite>KM_TeaCultivation</researchPrerequisite>
