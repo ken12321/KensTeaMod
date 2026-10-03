@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- Tier 2: requires advanced tea cultivation. -->
+
+  <!-- ===== Plant ===== -->
+  <ThingDef ParentName="KM_TeaPlantBase">
+    <defName>KM_Plant_Hawthorn</defName>
+    <label>hawthorn bush</label>
+    <description>A thorny shrub that bears clusters of small red berries. It grows slowly and needs a skilled hand, but the dried berries brew into a tonic that strengthens the heart.</description>
+    <graphicData>
+      <texPath>Things/Plant/BerryPlant</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+      <color>(220,120,120)</color>
+    </graphicData>
+    <plant>
+      <growDays>14</growDays>
+      <harvestedThingDef>KM_HawthornBerriesFresh</harvestedThingDef>
+      <harvestYield>5</harvestYield>
+      <sowMinSkill>6</sowMinSkill>
+      <sowResearchPrerequisites Inherit="False">
+        <li>KM_AdvancedTeaCultivation</li>
+      </sowResearchPrerequisites>
+    </plant>
+  </ThingDef>
+
+  <!-- ===== Berries ===== -->
+  <ThingDef ParentName="KM_FreshTeaLeavesBase">
+    <defName>KM_HawthornBerriesFresh</defName>
+    <label>fresh hawthorn berries</label>
+    <description>Freshly picked hawthorn berries. They must be dried on a drying rack before they can be brewed. Rain pauses drying outdoors. Left undried, they rot in about two weeks.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/Berries</texPath>
+      <color>(200,50,50)</color>
+    </graphicData>
+    <comps>
+      <li Class="KensMod.CompProperties_Dryable">
+        <driedThingDef>KM_HawthornBerriesDried</driedThingDef>
+        <daysToDry>2</daysToDry>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="KM_DriedTeaLeavesBase">
+    <defName>KM_HawthornBerriesDried</defName>
+    <label>dried hawthorn</label>
+    <description>Dried hawthorn berries, ready to be brewed into tea. Keeps indefinitely.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/Berries</texPath>
+      <color>(130,40,40)</color>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ===== Tea ===== -->
+  <ThingDef ParentName="KM_TeaBase">
+    <defName>KM_HawthornTea</defName>
+    <label>hawthorn tea</label>
+    <description>A tart, ruby-red tonic. For about 12 hours after drinking it, the heart pumps more strongly and the drinker moves a little faster. Drunk during a heart attack, it eases the attack. Not addictive.</description>
+    <descriptionHyperlinks>
+      <HediffDef>KM_HawthornTonic</HediffDef>
+      <HediffDef>HeartAttack</HediffDef>
+    </descriptionHyperlinks>
+    <statBases>
+      <WorkToMake>600</WorkToMake>
+      <MarketValue>14</MarketValue>
+    </statBases>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>KM_HawthornTonic</hediffDef>
+          <severity>1.0</severity>
+        </li>
+        <!-- Heart attacks start at 0.4, turn debilitating at 0.6 and are lethal at 1.0. -->
+        <li Class="KensMod.IngestionOutcomeDoer_OffsetHediffSeverity">
+          <hediffDef>HeartAttack</hediffDef>
+          <offset>-0.2</offset>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <recipeMaker>
+      <researchPrerequisite>KM_AdvancedTeaCultivation</researchPrerequisite>
+      <skillRequirements Inherit="False">
+        <Cooking>5</Cooking>
+      </skillRequirements>
+    </recipeMaker>
+    <costList>
+      <KM_HawthornBerriesDried>4</KM_HawthornBerriesDried>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <addictiveness>0</addictiveness>
+        <listOrder>117</listOrder>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ===== Effect: ~12 hours ===== -->
+  <HediffDef>
+    <defName>KM_HawthornTonic</defName>
+    <label>hawthorn tonic</label>
+    <labelNoun>a hawthorn tonic</labelNoun>
+    <description>Hawthorn tea in the bloodstream. The heart pumps more strongly and the pawn moves a little faster.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9,0.4,0.4)</defaultLabelColor>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-2.0</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>BloodPumping</capacity>
+            <offset>0.10</offset>
+          </li>
+        </capMods>
+        <statFactors>
+          <MoveSpeed>1.05</MoveSpeed>
+        </statFactors>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>KM_HawthornTonic</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>KM_HawthornTonic</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>hawthorn tonic</label>
+        <description>My heart feels strong after that hawthorn tea.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

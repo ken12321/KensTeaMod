@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ===== Plant ===== -->
+  <ThingDef ParentName="KM_TeaPlantBase">
+    <defName>KM_Plant_BlackTea</defName>
+    <label>tea bush</label>
+    <description>A slow-growing evergreen shrub whose young leaves make true tea. It takes patience and a skilled grower, but the dried leaves brew into a strong black tea that keeps the drinker alert.</description>
+    <graphicData>
+      <texPath>Things/Plant/SmokeleafPlant</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+      <color>(90,140,80)</color>
+    </graphicData>
+    <plant>
+      <growDays>10</growDays>
+      <harvestedThingDef>KM_BlackTeaLeavesFresh</harvestedThingDef>
+      <harvestYield>6</harvestYield>
+      <sowMinSkill>5</sowMinSkill>
+    </plant>
+  </ThingDef>
+
+  <!-- ===== Leaves ===== -->
+  <ThingDef ParentName="KM_FreshTeaLeavesBase">
+    <defName>KM_BlackTeaLeavesFresh</defName>
+    <label>fresh tea bush leaves</label>
+    <description>Freshly picked leaves from a tea bush. They must be dried on a drying rack before they can be brewed. Rain pauses drying outdoors. Left undried, they rot in about two weeks.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/SmokeleafLeaves</texPath>
+      <color>(110,170,90)</color>
+    </graphicData>
+    <comps>
+      <li Class="KensMod.CompProperties_Dryable">
+        <driedThingDef>KM_BlackTeaLeavesDried</driedThingDef>
+        <daysToDry>2</daysToDry>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="KM_DriedTeaLeavesBase">
+    <defName>KM_BlackTeaLeavesDried</defName>
+    <label>black tea leaves</label>
+    <description>Tea leaves that darkened and oxidised as they dried, ready to be brewed into black tea. Keeps indefinitely.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/SmokeleafLeaves</texPath>
+      <color>(90,60,40)</color>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ===== Tea ===== -->
+  <ThingDef ParentName="KM_TeaBase">
+    <defName>KM_BlackTea</defName>
+    <label>black tea</label>
+    <description>A strong, malty tea. For several hours after drinking it, the drinker tires more slowly and works a little faster. Not addictive.</description>
+    <descriptionHyperlinks>
+      <HediffDef>KM_BlackTeaAlert</HediffDef>
+    </descriptionHyperlinks>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>KM_BlackTeaAlert</hediffDef>
+          <severity>1.0</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <costList>
+      <KM_BlackTeaLeavesDried>4</KM_BlackTeaLeavesDried>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <addictiveness>0</addictiveness>
+        <listOrder>114</listOrder>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ===== Effect: ~8 hours ===== -->
+  <HediffDef>
+    <defName>KM_BlackTeaAlert</defName>
+    <label>alert from black tea</label>
+    <labelNoun>a black tea alertness</labelNoun>
+    <description>Black tea in the bloodstream. The pawn tires more slowly and works a little faster.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.75,0.55,0.35)</defaultLabelColor>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-3.0</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <restFallFactor>0.7</restFallFactor>
+        <statOffsets>
+          <WorkSpeedGlobal>0.05</WorkSpeedGlobal>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>KM_BlackTeaAlert</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>KM_BlackTeaAlert</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>perked up by black tea</label>
+        <description>That strong cup of black tea got me going.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

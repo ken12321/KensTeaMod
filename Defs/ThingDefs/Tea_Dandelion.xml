@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ===== Plant ===== -->
+  <ThingDef ParentName="KM_TeaPlantBase">
+    <defName>KM_Plant_Dandelion</defName>
+    <label>dandelion</label>
+    <description>A hardy little weed that grows almost anywhere, even in poor soil. Its dried leaves brew into a humble, earthy tea that takes the edge off hunger.</description>
+    <graphicData>
+      <texPath>Things/Plant/Dandelion</texPath>
+      <graphicClass>Graphic_Random</graphicClass>
+    </graphicData>
+    <plant>
+      <growDays>4</growDays>
+      <harvestedThingDef>KM_DandelionLeavesFresh</harvestedThingDef>
+      <harvestYield>8</harvestYield>
+      <!-- Grows almost anywhere, like wild dandelions. -->
+      <fertilityMin>0.05</fertilityMin>
+      <fertilitySensitivity>0</fertilitySensitivity>
+      <visualSizeRange>0.3~0.45</visualSizeRange>
+    </plant>
+  </ThingDef>
+
+  <!-- ===== Leaves ===== -->
+  <ThingDef ParentName="KM_FreshTeaLeavesBase">
+    <defName>KM_DandelionLeavesFresh</defName>
+    <label>fresh dandelion leaves</label>
+    <description>Freshly picked dandelion leaves. They must be dried on a drying rack before they can be brewed. Rain pauses drying outdoors. Left undried, they rot in about two weeks.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/SmokeleafLeaves</texPath>
+      <color>(190,220,110)</color>
+    </graphicData>
+    <comps>
+      <li Class="KensMod.CompProperties_Dryable">
+        <driedThingDef>KM_DandelionLeavesDried</driedThingDef>
+        <daysToDry>2</daysToDry>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="KM_DriedTeaLeavesBase">
+    <defName>KM_DandelionLeavesDried</defName>
+    <label>dried dandelion</label>
+    <description>Dried dandelion leaves, ready to be brewed into tea. Keeps indefinitely.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/PlantFoodRaw/SmokeleafLeaves</texPath>
+      <color>(170,170,90)</color>
+    </graphicData>
+  </ThingDef>
+
+  <!-- ===== Tea ===== -->
+  <ThingDef ParentName="KM_TeaBase">
+    <defName>KM_DandelionTea</defName>
+    <label>dandelion tea</label>
+    <description>A humble, earthy tea. For several hours after drinking it, the drinker gets hungry more slowly. Not addictive.</description>
+    <descriptionHyperlinks>
+      <HediffDef>KM_DandelionNourished</HediffDef>
+    </descriptionHyperlinks>
+    <statBases>
+      <MarketValue>6</MarketValue>
+    </statBases>
+    <ingestible>
+      <outcomeDoers>
+        <li Class="IngestionOutcomeDoer_GiveHediff">
+          <hediffDef>KM_DandelionNourished</hediffDef>
+          <severity>1.0</severity>
+        </li>
+      </outcomeDoers>
+    </ingestible>
+    <costList>
+      <KM_DandelionLeavesDried>4</KM_DandelionLeavesDried>
+    </costList>
+    <comps>
+      <li Class="CompProperties_Drug">
+        <addictiveness>0</addictiveness>
+        <listOrder>116</listOrder>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ===== Effect: ~8 hours ===== -->
+  <HediffDef>
+    <defName>KM_DandelionNourished</defName>
+    <label>nourished by dandelion</label>
+    <labelNoun>a dandelion nourishment</labelNoun>
+    <description>Dandelion tea in the bloodstream. The pawn gets hungry more slowly.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.95,0.85,0.3)</defaultLabelColor>
+    <maxSeverity>1.0</maxSeverity>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-3.0</severityPerDay>
+        <showHoursToRecover>true</showHoursToRecover>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <hungerRateFactor>0.9</hungerRateFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef>
+    <defName>KM_DandelionNourished</defName>
+    <workerClass>ThoughtWorker_Hediff</workerClass>
+    <hediff>KM_DandelionNourished</hediff>
+    <validWhileDespawned>true</validWhileDespawned>
+    <developmentalStageFilter>Baby, Child, Adult</developmentalStageFilter>
+    <stages>
+      <li>
+        <label>nourished by dandelion</label>
+        <description>That dandelion tea was surprisingly filling.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

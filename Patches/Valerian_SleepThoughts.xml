@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+
+  <!-- Valerian tea nullifies bad-sleep moods while the pawn is soothed.
+       Each conditional appends to an existing nullifyingHediffs list (e.g. added by another mod) or creates it. -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThoughtDef[defName="SleptOutside"]/nullifyingHediffs</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ThoughtDef[defName="SleptOutside"]/nullifyingHediffs</xpath>
+      <value><li>KM_ValerianSoothed</li></value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThoughtDef[defName="SleptOutside"]</xpath>
+      <value><nullifyingHediffs><li>KM_ValerianSoothed</li></nullifyingHediffs></value>
+    </nomatch>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThoughtDef[defName="SleptOnGround"]/nullifyingHediffs</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ThoughtDef[defName="SleptOnGround"]/nullifyingHediffs</xpath>
+      <value><li>KM_ValerianSoothed</li></value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThoughtDef[defName="SleptOnGround"]</xpath>
+      <value><nullifyingHediffs><li>KM_ValerianSoothed</li></nullifyingHediffs></value>
+    </nomatch>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThoughtDef[defName="SleptInCold"]/nullifyingHediffs</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ThoughtDef[defName="SleptInCold"]/nullifyingHediffs</xpath>
+      <value><li>KM_ValerianSoothed</li></value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThoughtDef[defName="SleptInCold"]</xpath>
+      <value><nullifyingHediffs><li>KM_ValerianSoothed</li></nullifyingHediffs></value>
+    </nomatch>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThoughtDef[defName="SleptInHeat"]/nullifyingHediffs</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ThoughtDef[defName="SleptInHeat"]/nullifyingHediffs</xpath>
+      <value><li>KM_ValerianSoothed</li></value>
+    </match>
+    <nomatch Class="PatchOperationAdd">
+      <xpath>Defs/ThoughtDef[defName="SleptInHeat"]</xpath>
+      <value><nullifyingHediffs><li>KM_ValerianSoothed</li></nullifyingHediffs></value>
+    </nomatch>
+  </Operation>
+
+</Patch>

@@ -11,4 +11,18 @@
     <researchViewY>5.60</researchViewY>
   </ResearchProjectDef>
 
+  <!-- Tier 2 teas. Neolithic so the cost is a flat 500 for every faction tech level. -->
+  <ResearchProjectDef>
+    <defName>KM_AdvancedTeaCultivation</defName>
+    <label>advanced tea cultivation</label>
+    <description>Cultivate finicky medicinal herbs and brew them into stronger teas with more pronounced effects. These herbs demand skilled growers and cooks.</description>
+    <baseCost>500</baseCost>
+    <techLevel>Neolithic</techLevel>
+    <prerequisites>
+      <li>KM_TeaCultivation</li>
+    </prerequisites>
+    <researchViewX>1.00</researchViewX>
+    <researchViewY>6.30</researchViewY>
+  </ResearchProjectDef>
+
 </Defs>
