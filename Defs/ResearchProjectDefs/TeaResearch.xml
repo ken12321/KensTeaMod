@@ -4,8 +4,8 @@
   <ResearchProjectDef>
     <defName>KM_TeaCultivation</defName>
     <label>tea cultivation</label>
-    <description>Grow tea herbs, dry their leaves on drying racks, and brew them into soothing teas at a campfire or stove.</description>
-    <baseCost>300</baseCost>
+    <description>Grow tea herbs, dry their leaves on drying racks, and brew them into helpful beverages at a campfire or stove.</description>
+    <baseCost>100</baseCost>
     <techLevel>Neolithic</techLevel>
     <researchViewX>0.00</researchViewX>
     <researchViewY>5.60</researchViewY>
