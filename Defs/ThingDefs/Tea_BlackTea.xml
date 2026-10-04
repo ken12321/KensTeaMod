@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
+  <!-- Tier 2: requires advanced tea cultivation. -->
+
   <!-- ===== Plant ===== -->
   <ThingDef ParentName="KM_TeaPlantBase">
     <defName>KM_Plant_BlackTea</defName>
@@ -15,7 +17,10 @@
       <growDays>10</growDays>
       <harvestedThingDef>KM_BlackTeaLeavesFresh</harvestedThingDef>
       <harvestYield>6</harvestYield>
-      <sowMinSkill>5</sowMinSkill>
+      <sowMinSkill>6</sowMinSkill>
+      <sowResearchPrerequisites Inherit="False">
+        <li>KM_AdvancedTeaCultivation</li>
+      </sowResearchPrerequisites>
     </plant>
   </ThingDef>
 
@@ -54,6 +59,10 @@
     <descriptionHyperlinks>
       <HediffDef>KM_BlackTeaAlert</HediffDef>
     </descriptionHyperlinks>
+    <statBases>
+      <WorkToMake>600</WorkToMake>
+      <MarketValue>14</MarketValue>
+    </statBases>
     <ingestible>
       <outcomeDoers>
         <li Class="IngestionOutcomeDoer_GiveHediff">
@@ -62,6 +71,12 @@
         </li>
       </outcomeDoers>
     </ingestible>
+    <recipeMaker>
+      <researchPrerequisite>KM_AdvancedTeaCultivation</researchPrerequisite>
+      <skillRequirements Inherit="False">
+        <Cooking>5</Cooking>
+      </skillRequirements>
+    </recipeMaker>
     <costList>
       <KM_BlackTeaLeavesDried>4</KM_BlackTeaLeavesDried>
     </costList>
